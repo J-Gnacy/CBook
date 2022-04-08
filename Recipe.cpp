@@ -16,21 +16,32 @@ void Recipe::DeleteIngredient(Ingredient* ingredient)
 
 void Recipe::RecalculateRecipe(float newAmount)
 {
-    float ratio = recipeProductAmount / newAmount;
+    float ratio = recipeDesiredAmount / newAmount;
+    recipeDesiredAmount = newAmount;
     float temporaryAmount;
 
-    for(int i = 0; i < IngredientList.size(); i++)
-    {
-        temporaryAmount=IngredientList[i]->getAmount();
+    auto recalculateFormula = [&](Ingredient* ingredient) {
+        temporaryAmount = ingredient->GetAmount();
         temporaryAmount = temporaryAmount / ratio;
-        IngredientList[i]->setAmount(temporaryAmount);
-    }
+        ingredient->SetAmount(temporaryAmount); };
+
+    ForEachIngredient(recalculateFormula);
 }
 
 void Recipe::ShowRecipe()
 {
     Log("Recipe name: " + recipeName);
-    
+    std::cout << "   Amount: ";
+    Log(recipeDesiredAmount);
+
+    auto showAllIngredients = [&](Ingredient* ingredient) {
+        Log((ingredient->GetName()));
+        Log(ingredient->GetAmount());
+    };
+
+    ForEachIngredient(showAllIngredients);
+
+
 }
 
 void Recipe::ForEachIngredient(const std::function<void(Ingredient*)>& func)
@@ -48,12 +59,13 @@ std::vector<Ingredient*> Recipe::GetIngredientList()
 
 Recipe::~Recipe()
 {
-    for (int i = 0; i < IngredientList.size(); i++)
-    {
+    auto logRemoveMessage = [&](Ingredient* ingredient) {
+        Log((ingredient->GetName()) + " removed");
+        DeleteIngredient(ingredient);
+    };
 
-        std::cout << "Test destroyed\n";
-        DeleteIngredient(IngredientList[i]);
-    }
+    ForEachIngredient(logRemoveMessage);
+
 }
 
 template<typename logged>

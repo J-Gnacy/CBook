@@ -24,11 +24,13 @@ class Ingredient
     }
 
 public:
-    std::string getName();
+    std::string GetName();
 
-    void setAmount(float newAmount);
+    void SetAmount(float newAmount);
 
-    float getAmount();
+    float GetAmount();
+
+    Unit GetUnit();
 
 };
 

@@ -1,10 +1,18 @@
 ﻿// CBook.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
 //
-
+#include "Recipe.h"
 #include <iostream>
 
 int main()
 {
+    {
+        Recipe r(100, "Kek", kg);
+        r.AddIngredient("Cos", 10, kg);
+        r.ShowRecipe();
+
+        r.RecalculateRecipe(10);
+        r.ShowRecipe();
+    }
     std::cout << "Hello World!\n";
 }
 

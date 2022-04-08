@@ -12,16 +12,18 @@ private:
 
     std::vector<Ingredient*>IngredientList;
 
-    float recipeProductAmount;
+    const float recipeProductAmount;
 
-    float recipeNewAmount;
+    float recipeDesiredAmount;
 
     std::string recipeName;
 
+    Unit recipeUnit;
+
 public:
 
-    Recipe(float desiredAmount, std::string desiredName)
-        :recipeProductAmount(desiredAmount), recipeName(desiredName){};
+    Recipe(float desiredAmount, std::string desiredName, Unit desiredUnit)
+        :recipeProductAmount(desiredAmount), recipeDesiredAmount(desiredAmount), recipeName(desiredName), recipeUnit(desiredUnit){};
 
 
     void AddIngredient(std::string name, float amount, Unit unitUsed);
@@ -31,14 +33,14 @@ public:
 
     void RecalculateRecipe(float newAmount);
 
-    template<typename logged>
-    void Log(logged var);
-
     void ShowRecipe();
 
     void ForEachIngredient(const std::function<void(Ingredient*)>& func);
 
     std::vector<Ingredient*> GetIngredientList();
+
+    template<typename logged>
+    static void Log(logged var);
 
     ~Recipe();
 

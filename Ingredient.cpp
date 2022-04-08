@@ -1,16 +1,21 @@
 #include "Ingredient.h"
 
-std::string Ingredient::getName()
+std::string Ingredient::GetName()
 {
 	return name;
 }
 
-void Ingredient::setAmount(float newAmount)
+Unit Ingredient::GetUnit()
+{
+	return usedUnit;
+}
+
+void Ingredient::SetAmount(float newAmount)
 {
 	amount = newAmount;
 }
 
-float Ingredient::getAmount() 
+float Ingredient::GetAmount() 
 {
 	return amount;
 }

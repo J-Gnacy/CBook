@@ -5,15 +5,7 @@
 
 int main()
 {
-    {
-        Recipe r(100, "Kek", kg);
-        r.AddIngredient("Cos", 10, kg);
-        r.ShowRecipe();
 
-        r.RecalculateRecipe(10);
-        r.ShowRecipe();
-    }
-    std::cout << "Hello World!\n";
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania

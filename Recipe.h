@@ -37,6 +37,8 @@ public:
 
     void ForEachIngredient(const std::function<void(Ingredient*)>& func);
 
+    float GetAmount();
+
     std::vector<Ingredient*> GetIngredientList();
 
     template<typename logged>

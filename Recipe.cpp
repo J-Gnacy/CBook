@@ -52,6 +52,11 @@ void Recipe::ForEachIngredient(const std::function<void(Ingredient*)>& func)
     }
 }
 
+float Recipe::GetAmount()
+{
+    return recipeDesiredAmount;
+}
+
 std::vector<Ingredient*> Recipe::GetIngredientList()
 {
     return IngredientList;

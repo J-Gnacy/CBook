@@ -20,6 +20,8 @@ private:
 
     Unit recipeUnit;
 
+    void ForEachIngredient(const std::function<void(Ingredient*)>& func);
+
 public:
 
     Recipe(float desiredAmount, std::string desiredName, Unit desiredUnit)
@@ -34,8 +36,6 @@ public:
     void RecalculateRecipe(float newAmount);
 
     void ShowRecipe();
-
-    void ForEachIngredient(const std::function<void(Ingredient*)>& func);
 
     float GetAmount();
 
